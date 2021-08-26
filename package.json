@@ -1,6 +1,6 @@
 {
   "name": "@vue-formily/date-format",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Simple date format plugin for vue-formily. Can be used as a standalone library to format date.",
   "author": "An Ha",
   "license": "MIT",
