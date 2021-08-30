@@ -17,9 +17,9 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 
   # # publish
   if [[ -z $TAG ]]; then
-    np "$VERSION" --message "build: release $VERSION" --release-draft-only
+    np $VERSION --message "build: release $VERSION"
   else
-    np "$VERSION" --tag "$TAG" --message "build: release $VERSION" --release-draft-only
+    np $VERSION --tag $TAG --message "build: release $VERSION"
   fi
 
   # generate release note
