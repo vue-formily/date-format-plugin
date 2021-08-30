@@ -204,10 +204,7 @@ function formatDate(
   date: number | Date | { value: Date },
   options?: DateTimeFormatterOptions
 ) {
-  const _options = {
-    ...this.options,
-    ...options
-  } as DateTimeFormatterOptions;
+  const opts = { ...this.options, ...options };
   const value = isPlainObject(date) && 'value' in date ? date.value : date;
 
   return format.replace(formattingTokensRegExp, (token: string) => {
@@ -224,7 +221,7 @@ function formatDate(
     const formatter = formatters[firstCharacter];
 
     if (formatter) {
-      return localize(formatter(new Calendar(value, options), token), _options);
+      return localize(formatter(new Calendar(value, opts), token), opts);
     }
 
     return token;
@@ -234,8 +231,10 @@ function formatDate(
 export default {
   name: 'date-format',
   format: formatDate,
-  install() {
-    return this;
+  install(Objeto: any, options = {}) {
+    this.options = { ...this.options, ...options };
+
+    Objeto.prototype.$dateFormat = this;
   },
   options: {} as DateTimeFormatterOptions
 };

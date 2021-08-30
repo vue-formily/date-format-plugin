@@ -5,7 +5,7 @@
 </p>
 <br>
 
-Simple date format plugin for [**vue-formily**](https://vue-formily.netlify.app). Can be used as a standalone library to format date. 
+Simple date format plugin for [**vue-formily**](https://vue-formily.netlify.app).
 
 ## Links
 - [📚 &nbsp; Documentation](https://vue-formily.netlify.app/plugins/date-format)
@@ -24,7 +24,7 @@ If you are using native ES Modules, there is also an ES Modules compatible build
 
 ```html
 <script type="module">
-  import Vue from 'https://unpkg.com/@vue-formily/date-format@latest/dist/date-format-plugin.esm.js'
+  import dateFormat from 'https://unpkg.com/@vue-formily/date-format@latest/dist/date-format-plugin.esm.js'
 </script>
 ```
 
@@ -101,4 +101,4 @@ You are welcome to contribute to this project, but before you do, please make su
 
 ## License
 
-[MIT](https://github.com/vue-formily/date-format-plugin/blob/main/LICENSE)
+[MIT](./LICENSE)
