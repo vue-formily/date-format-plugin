@@ -1,19 +1,22 @@
 {
   "name": "@vue-formily/date-format",
   "version": "0.1.0",
-  "description": "Simple date format plugin for vue-formily. Can be used as a standalone library to format date.",
+  "description": "Simple date format plugin for vue-formily.",
   "author": "An Ha",
   "license": "MIT",
   "module": "esm/src/index.js",
   "unpkg": "dist/date-format-plugin.js",
   "main": "dist/date-format-plugin.js",
   "types": "dist/date-format-plugin.d.ts",
-  "homepage": "https://github.com/vue-formily/date-format-plugin",
+  "homepage": "https://vue-formily.netlify.app/plugins/date-format",
   "repository": "https://github.com/vue-formily/date-format-plugin",
   "sideEffects": false,
   "keywords": [
+    "vue",
+    "plugin",
     "vue-formily",
-    "date format"
+    "datetime",
+    "formatter"
   ],
   "files": [
     "dist",
@@ -36,6 +39,8 @@
     "@commitlint/config-conventional": "^13.1.0",
     "@types/jest": "^27.0.1",
     "@typescript-eslint/eslint-plugin": "^4.29.3",
+    "@vue-formily/formily": "^1.0.0-alpha.2",
+    "@vue/test-utils": "^1.2.2",
     "commitizen": "^4.2.4",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^7.15.0",
