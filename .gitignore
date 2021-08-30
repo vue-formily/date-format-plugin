@@ -12,6 +12,7 @@ pnpm-debug.log*
 .vscode
 
 coverage
+RELEASE_NOTE*.md
 
 # Built files
 /esm/
