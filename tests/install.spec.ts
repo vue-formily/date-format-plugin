@@ -3,7 +3,7 @@ import VueFormily from '@vue-formily/formily';
 import dateFormat from '@/.';
 import vi from '../locale/vi.json';
 
-describe('dateFormat', () => {
+describe('Installation', () => {
   let localVue: any;
 
   beforeEach(() => {

@@ -5,7 +5,7 @@ import enUS from '../locale/en-US.json';
 dateFormat.options.locale = enUS.code;
 dateFormat.options.locales = [enUS];
 
-describe('dateFormat', () => {
+describe('Date Format', () => {
   const date = new Date('2020-12-27T08:06:10.941Z');
 
   it('G - Era designator', async () => {

@@ -5,7 +5,7 @@ export type Locale = {
   code: string;
   localize?: Record<string, any>;
 };
-export type DateTimeFormatterOptions = CalendarOptions & {
+export type DateFormatOptions = CalendarOptions & {
   locales?: Locale[];
 };
 
@@ -54,7 +54,7 @@ function weekInMonth(cal: Calendar) {
   return Math.floor(remain > 0 ? 1 + remain / 7 + (remain % 7 !== 0 ? 1 : 0) : 1);
 }
 
-function localize(path: string, { locales = [], locale }: DateTimeFormatterOptions) {
+function localize(path: string, { locales = [], locale }: DateFormatOptions = {}) {
   const _locale = locales.find(loc => loc.code === locale) || ({} as any);
   const value = get(path, _locale.localize);
 
@@ -198,15 +198,7 @@ const formatters: Record<string, any> = {
   }
 };
 
-function formatDate(
-  this: any,
-  format: string,
-  date: number | Date | { value: Date },
-  options?: DateTimeFormatterOptions
-) {
-  const opts = { ...this.options, ...options };
-  const value = isPlainObject(date) && 'value' in date ? date.value : date;
-
+function formatDate(format: string, date: number | Date, options?: DateFormatOptions) {
   return format.replace(formattingTokensRegExp, (token: string) => {
     if (token === "''") {
       return "'";
@@ -221,20 +213,31 @@ function formatDate(
     const formatter = formatters[firstCharacter];
 
     if (formatter) {
-      return localize(formatter(new Calendar(value, opts), token), opts);
+      return localize(formatter(new Calendar(date, options), token), options);
     }
 
     return token;
   });
 }
 
+function mergeOptions(defaultOtions: Record<string, any>, options?: Record<string, any>) {
+  return { ...defaultOtions, ...options };
+}
+
 export default {
   name: 'date-format',
-  format: formatDate,
+  format(format: string, date: number | Date | Record<string, any>, options?: DateFormatOptions) {
+    if (isPlainObject(date) && (date as any).formType === 'field') {
+      const { value, options = {} } = date as any;
+      return formatDate(format, value, mergeOptions(this.options, options.i18n));
+    }
+
+    return formatDate(format, date as number | Date, mergeOptions(this.options, options));
+  },
   install(Objeto: any, options = {}) {
-    this.options = { ...this.options, ...options };
+    this.options = mergeOptions(this.options, options);
 
     Objeto.prototype.$dateFormat = this;
   },
-  options: {} as DateTimeFormatterOptions
+  options: {} as DateFormatOptions
 };
