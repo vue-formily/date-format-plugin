@@ -11,6 +11,15 @@ Simple date format plugin for [**vue-formily**](https://vue-formily.netlify.app)
 - [📚 &nbsp; Documentation](https://vue-formily.netlify.app/plugins/date-format)
 
 ## Installation
+### NPM
+```sh
+# install with yarn
+yarn add @vue-formily/date-format
+
+# install with npm
+npm install @vue-formily/date-format --save
+```
+
 ### CDN
 You can use **date-format** plugin with a script tag and a CDN, import the library like this:
 
@@ -34,15 +43,6 @@ For locales:
 <script src="https://unpkg.com/@vue-formily/date-format@latest/dist/locale/en-US.json"></script>
 ```
 
-### NPM
-```sh
-# install with yarn
-yarn add @vue-formily/date-format
-
-# install with npm
-npm install @vue-formily/date-format --save
-```
-
 ### Set Up
 
 ```typescript
@@ -50,9 +50,37 @@ import Vue from 'vue';
 import VueFormily from '@vue-formily/formily';
 import dateFormat from '@vue-formily/date-format';
 
+// Use this
 Vue.use(VueFormily, {
-  plugins: [dateFormat]
+  plugins: [
+    {
+      ...dateFormat.
+      options: {} as DateFormatOptions
+    }
+  ]
 });
+
+// Or this
+VueFormily.plug(dateFormat, {} as DateFormatOptions);
+Vue.use(VueFormily);
+```
+
+## Options
+```typescript
+type Locale = {
+  code: string;
+  localize?: Record<string, any>;
+}
+
+type DateFormatOptions = {
+  // 1 -> 7 ~ monday -> sunday
+  firstDayOfWeek?: number;
+  // 1 -> 7
+  minimalDaysInFirstWeek?: number;
+  timeZone?: string | number;
+  locale?: string;
+  locales?: Locale[];
+};
 ```
 
 ## Basic Usage
@@ -79,7 +107,7 @@ dateFormat.format("yyyy-MM-dd'T'HH:mm:ss.SSSXXX", date); // 2020-12-27T15:06:10.
 ```
 
 ### In Vue Formily's [Field](https://vue-formily.netlify.app/api/field)
-To **format date** in Vue Formily's Field, we need to [plug](https://vue-formily.netlify.app/api/helpers#plug) a plugin with `date-format` name first. After that, we can use the `format` option in the [FieldSchema](https://vue-formily.netlify.app/api/field#constructor). Note that the **schema's type** has to be `date`.
+After installing **Date Format Plugin**, we can use the `format` option in the [FieldSchema](https://vue-formily.netlify.app/api/field#constructor).  Note that the **schema's type** has to be `date`.
 
 ```typescript
 // Sample schema
@@ -91,14 +119,10 @@ To **format date** in Vue Formily's Field, we need to [plug](https://vue-formily
 }
 ```
 
-
 For a deeper understanding, please check the [formatting example](https://vue-formily.netlify.app/examples/formatting).
 
-
 ## Contributing
-
 You are welcome to contribute to this project, but before you do, please make sure you read the [Contributing Guide](https://github.com/vue-formily/formily/blob/main/.github/CONTRIBUTING.md).
 
 ## License
-
 [MIT](./LICENSE)
