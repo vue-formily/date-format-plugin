@@ -35,17 +35,17 @@ body:
     validations:
       required: true
   - type: dropdown
-    id: version
+    id: vue_formily_version
     attributes:
-      label: Version
-      description: vue-formily version
+      label: Vue Formily Version
+      description: Vue Formily version
       options:
         - 1.x
   - type: dropdown
     id: version
     attributes:
       label: Version
-      description: date-format-plugin version
+      description: Date Format Plugin version
       options:
         - 1.x
     validations:
