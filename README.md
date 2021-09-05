@@ -50,17 +50,6 @@ import Vue from 'vue';
 import VueFormily from '@vue-formily/formily';
 import dateFormat from '@vue-formily/date-format';
 
-// Use this
-Vue.use(VueFormily, {
-  plugins: [
-    {
-      ...dateFormat.
-      options: {} as DateFormatOptions
-    }
-  ]
-});
-
-// Or this
 VueFormily.plug(dateFormat, {} as DateFormatOptions);
 Vue.use(VueFormily);
 ```
