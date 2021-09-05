@@ -2,8 +2,15 @@ import dateFormat from '@/index';
 import { Calendar } from '@/Calendar';
 import enUS from '../locale/en-US.json';
 
-dateFormat.options.locale = enUS.code;
-dateFormat.options.locales = [enUS];
+dateFormat.install(
+  {
+    prototype: {}
+  },
+  {
+    locale: enUS.code,
+    locales: [enUS]
+  }
+);
 
 describe('Date Format', () => {
   const date = new Date('2020-12-27T08:06:10.941Z');

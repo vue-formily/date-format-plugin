@@ -116,4 +116,45 @@ describe('Installation', () => {
       ]
     });
   });
+
+  test('Set options in schema', async () => {
+    VueFormily.plug(dateFormat, {
+      locales: [vi]
+    });
+
+    localVue.use(VueFormily);
+
+    const wrapper = mount(
+      {
+        template: '<div></div>'
+      },
+      {
+        localVue
+      }
+    );
+
+    const vm = wrapper.vm as any;
+
+    vm.$formily.addForm({
+      formId: 'test',
+      fields: [
+        {
+          formId: 'a',
+          type: 'date',
+          value: date,
+          format: 'MMMMM',
+          options: {
+            dateFormat: {
+              locale: 'vi'
+            }
+          },
+          on: {
+            validated(field: any) {
+              expect(field.formatted).toBe('Tháng Mười Hai');
+            }
+          }
+        }
+      ]
+    });
+  });
 });

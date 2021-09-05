@@ -220,24 +220,21 @@ function formatDate(format: string, date: number | Date, options?: DateFormatOpt
   });
 }
 
-function mergeOptions(defaultOtions: Record<string, any>, options?: Record<string, any>) {
-  return { ...defaultOtions, ...options };
-}
-
 export default {
-  name: 'date-format',
-  format(format: string, date: number | Date | Record<string, any>, options?: DateFormatOptions) {
+  format(this: any, format: string, date: number | Date | Record<string, any>, options: DateFormatOptions = {}) {
+    let opts = options;
+    let value = date;
+
     if (isPlainObject(date) && (date as any).formType === 'field') {
-      const { value, options = {} } = date as any;
-      return formatDate(format, value, mergeOptions(this.options, options.i18n));
+      ({ value, options = {} } = date as any);
+      opts = (options as any).dateFormat || {};
     }
 
-    return formatDate(format, date as number | Date, mergeOptions(this.options, options));
+    return formatDate(format, value as number | Date, { ...this.options, ...opts });
   },
-  install(Objeto: any, options = {}) {
-    this.options = mergeOptions(this.options, options);
+  install(this: any, Objeto: any, options = {}) {
+    this.options = options;
 
     Objeto.prototype.$dateFormat = this;
-  },
-  options: {} as DateFormatOptions
+  }
 };
