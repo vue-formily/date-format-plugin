@@ -33,9 +33,11 @@ async function copyLocales() {
     console.log(`${chalk.green(`Output File ${i + 1}/${files.length}: `)} ${file}`);
 
     const input = path.join(__dirname, '../locale', file);
-    const out = path.join(__dirname, '../dist/locale', file);
+    const outDist = path.join(__dirname, '../dist/locale', file);
+    const outEsm = path.join(__dirname, '../esm/locale', file);
 
-    fs.copySync(input, out);
+    fs.copySync(input, outDist);
+    fs.copySync(input, outEsm);
   }
 }
 
