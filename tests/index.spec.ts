@@ -4,7 +4,7 @@ import enUS from '../locale/en-US.json';
 
 dateFormat.install(
   {
-    prototype: {}
+    plugs: {}
   },
   {
     locale: enUS.code,

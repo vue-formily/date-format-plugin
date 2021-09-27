@@ -232,9 +232,9 @@ export default {
 
     return formatDate(format, value as number | Date, { ...this.options, ...opts });
   },
-  install(this: any, Objeto: any, options = {}) {
+  install(this: any, config: any, options = {}) {
     this.options = options;
 
-    Objeto.prototype.$dateFormat = this;
+    config.plugs.dateFormat = this;
   }
 };

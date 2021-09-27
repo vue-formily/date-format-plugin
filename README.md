@@ -44,14 +44,32 @@ For locales:
 ```
 
 ### Set Up
-
+### Vue 3.x
 ```typescript
-import Vue from 'vue';
-import VueFormily from '@vue-formily/formily';
+import { createApp } from 'vue'
+import { createFormily } from '@vue-formily/formily';
 import dateFormat from '@vue-formily/date-format';
 
-VueFormily.plug(dateFormat, {} as DateFormatOptions);
-Vue.use(VueFormily);
+const formily = createFormily();
+
+formily.plug(dateFormat, {} as DateFormatOptions);
+
+const app = createApp(App)
+
+app.use(formily);
+```
+
+### Vue 2.x
+```typescript
+import Vue from 'vue';
+import { createFormily } from '@vue-formily/formily';
+import dateFormat from '@vue-formily/date-format';
+
+const formily = createFormily();
+
+formily.plug(dateFormat, {} as DateFormatOptions);
+
+Vue.use(formily);
 ```
 
 ## Options
