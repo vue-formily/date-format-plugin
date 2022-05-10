@@ -221,13 +221,21 @@ function formatDate(format: string, date: number | Date, options?: DateFormatOpt
 }
 
 export default {
-  format(this: any, format: string, date: number | Date | Record<string, any>, options: DateFormatOptions = {}) {
+  format(
+    this: any,
+    format: string,
+    date: number | Date | Record<string, any> | [Record<string, any>],
+    options: DateFormatOptions = {}
+  ) {
     let opts = options;
-    let value = date;
+    let value = Array.isArray(date) ? date[0] : date;
 
-    if (isPlainObject(date) && (date as any).formType === 'field') {
-      ({ value, options = {} } = date as any);
-      opts = (options as any).dateFormat || {};
+    if (isPlainObject(value) && (value as any).formType === 'field') {
+      ({ value, options = {} } = value as any);
+      opts = {
+        ...(options as any).dateFormat,
+        ...opts
+      };
     }
 
     return formatDate(format, value as number | Date, { ...this.options, ...opts });

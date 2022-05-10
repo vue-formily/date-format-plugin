@@ -4,7 +4,7 @@
   "description": "Simple date format plugin for vue-formily.",
   "author": "An Ha",
   "license": "MIT",
-  "module": "esm/src/index.js",
+  "module": "esm/index.js",
   "unpkg": "dist/date-format-plugin.js",
   "main": "dist/date-format-plugin.js",
   "types": "dist/date-format-plugin.d.ts",
